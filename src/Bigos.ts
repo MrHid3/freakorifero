@@ -4,6 +4,10 @@ export class Bigos {
     name: string;
     notes: Gulasz[] = [];
     context: HTMLElement;
+    readonly defaultx = 200;
+    readonly defaulty = 200;
+    readonly defaultheight = 200;
+    readonly defaultwidth = 200;
 
     constructor(name: string, context: HTMLElement) {
         this.name = name;
@@ -11,8 +15,16 @@ export class Bigos {
         this.test();
     }
 
+    newGulasz(){
+        let id = this.notes.length;
+        let x = this.defaultx;
+        let y = this.defaulty;
+        let height = this.defaultheight;
+        let width = this.defaultheight;
+        this.notes.push(new Gulasz(id, x, y, width, height, "", this.context))
+    }
+
     test(){
-        let tak = new Gulasz(0, 200, 200, 200, 200, "tak", this.context);
-        this.notes.push(tak);
+        this.newGulasz("tal")
     }
 }
