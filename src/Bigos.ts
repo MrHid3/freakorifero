@@ -4,8 +4,8 @@ export class Bigos {
     name: string;
     notes: Gulasz[] = [];
     context: HTMLElement;
-    readonly defaultx = 200;
-    readonly defaulty = 200;
+    readonly defaultx = 50;
+    readonly defaulty = 50;
     readonly defaultheight = 200;
     readonly defaultwidth = 200;
 
@@ -21,10 +21,10 @@ export class Bigos {
         let y = this.defaulty;
         let height = this.defaultheight;
         let width = this.defaultheight;
-        this.notes.push(new Gulasz(id, x, y, width, height, "", this.context))
+        this.notes.push(new Gulasz(id, x, y, width, height, "notka", this.context))
     }
 
     test(){
-        this.newGulasz("tal")
+        this.newGulasz()
     }
 }
