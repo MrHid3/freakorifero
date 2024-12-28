@@ -39,6 +39,11 @@ export class Gulasz {
         this.div.style.top = this.x + "px";
         this.div.style.left = this.y + "px";
 
+        this.ragDoll()
+        this.starDestroyer();
+    }
+
+    ragDoll(){
         this.div.addEventListener("mousedown", (e) => {
             this.draggable = true;
             this.prevPosX = e.clientX;
@@ -54,30 +59,17 @@ export class Gulasz {
                 this.prevPosY = e.clientY;
                 this.div.style.top = (this.div.offsetTop - this.currentPosY) + 'px';
                 this.div.style.left = (this.div.offsetLeft - this.currentPosX) + 'px';
-                console.log("move")
             })
         })
         this.context.appendChild(this.div);
-
-
     }
 
-    ragDoll(e : MouseEvent){
-        e.preventDefault();
-
-        document.onmouseup = this.closeDragElement;
-        document.onmousemove = this.elementDrag;
-        console.log("down")
-    }
-
-    elementDrag(e : MouseEvent){
-        e.preventDefault();
-
-    }
-
-    closeDragElement(){
-        // e.preventDefault();
-
-        console.log("close")
+    starDestroyer(){
+        let div = document.createElement("div");
+        div.classList.add("detroit");
+        div.addEventListener("click", () => {
+            this.context.removeChild(this.div);
+        })
+        this.div.appendChild(div);
     }
 }

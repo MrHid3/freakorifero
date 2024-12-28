@@ -2,7 +2,7 @@ import {Gulasz} from './Gulasz.ts'
 
 export class Bigos {
     name: string;
-    notes: Gulasz[] = [];
+    notes: Gulasz[];
     context: HTMLElement;
     readonly defaultx = 50;
     readonly defaulty = 50;
@@ -12,6 +12,14 @@ export class Bigos {
     constructor(name: string, context: HTMLElement) {
         this.name = name;
         this.context = context;
+        this.notes = [];
+        let div = document.createElement("div");
+        div.classList.add("creator")
+        div.addEventListener("click", () => {
+            this.newGulasz();
+        })
+        context.append(div)
+
         this.test();
     }
 
@@ -25,6 +33,7 @@ export class Bigos {
     }
 
     test(){
-        this.newGulasz()
+        console.log("Test");
+        this.newGulasz();
     }
 }

@@ -4,7 +4,52 @@
     padding: 0;
 }
 
+body{
+    background: #3e4452;
+}
+
 .gulasz{
-    border: 2px solid black;
+    border: 4px solid darkcyan;
     position: fixed;
+    background-color: white;
+    border-radius: 10px 5px 10px 0;
+    padding: 5px;
+
+}
+
+.gulasz:hover{
+    border: 3px solid cyan;
+    z-index: 100;
+}
+
+.creator{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-image: url("https://cdn-icons-png.flaticon.com/512/1091/1091916.png");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.detroit{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    background-color: #ff0505;
+    border-radius: 0 0 0 50%;
+    transition-duration: 0.2s;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: #faa;
+}
+
+.detroit:hover{
+    width: 35px;
+    height: 35px;
+    background-color: #ff0000;
+    border-color: #ff0000;
 }
