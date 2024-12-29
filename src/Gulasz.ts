@@ -12,6 +12,7 @@ export class Gulasz {
     prevPosX: number;
     prevPosY: number;
     draggable: boolean;
+    resizable: boolean;
 
     constructor(id: number, x: number, y: number, width: number, height: number, content: string, context: HTMLElement) {
         this.id = id;
@@ -27,6 +28,7 @@ export class Gulasz {
         this.prevPosX = 0;
         this.prevPosY = 0;
         this.draggable = false;
+        this.resizable = false;
         this.create();
     }
 
@@ -41,6 +43,7 @@ export class Gulasz {
 
         this.ragDoll()
         this.starDestroyer();
+        this.coloseum();
     }
 
     ragDoll(){
@@ -48,19 +51,28 @@ export class Gulasz {
             this.draggable = true;
             this.prevPosX = e.clientX;
             this.prevPosY = e.clientY;
+            this.div.classList.add("unselectable")
             document.addEventListener("mouseup", () => {
                 this.draggable = false;
+                this.resizable = false;
+                this.div.classList.remove("unselectable");
             })
             document.addEventListener("mousemove", (e) => {
-                if(!this.draggable) return;
                 this.currentPosX = this.prevPosX - e.clientX;
                 this.currentPosY = this.prevPosY - e.clientY;
                 this.prevPosX = e.clientX;
                 this.prevPosY = e.clientY;
-                this.div.style.top = (this.div.offsetTop - this.currentPosY) + 'px';
-                this.div.style.left = (this.div.offsetLeft - this.currentPosX) + 'px';
+                if (this.draggable && !this.resizable) {
+                    this.div.style.top = (this.div.offsetTop - this.currentPosY) + 'px';
+                    this.div.style.left = (this.div.offsetLeft - this.currentPosX) + 'px';
+                } else if (this.resizable){
+                    this.div.style.width = (this.div.offsetWidth - this.currentPosX) + 'px';
+                    let min = (Math.ceil(this.content.length * 16 / this.div.offsetWidth)) * 24;
+                    this.div.style.height = Math.max(this.div.offsetHeight - this.currentPosY, min) + 'px';
+                }
             })
         })
+
         this.context.appendChild(this.div);
     }
 
@@ -69,6 +81,16 @@ export class Gulasz {
         div.classList.add("detroit");
         div.addEventListener("click", () => {
             this.context.removeChild(this.div);
+        })
+        this.div.appendChild(div);
+    }
+
+    coloseum(){
+        let div = document.createElement("div");
+        div.classList.add("rome");
+        div.addEventListener("mousedown", () => {
+            this.resizable = true;
+            this.draggable = false;
         })
         this.div.appendChild(div);
     }

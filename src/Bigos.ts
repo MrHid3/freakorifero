@@ -29,7 +29,7 @@ export class Bigos {
         let y = this.defaulty;
         let height = this.defaultheight;
         let width = this.defaultheight;
-        this.notes.push(new Gulasz(id, x, y, width, height, "notka", this.context))
+        this.notes.push(new Gulasz(id, x, y, width, height, "skibidi toilet goni mnie śpiewając te piosenke", this.context))
     }
 
     test(){
