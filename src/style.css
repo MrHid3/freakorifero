@@ -17,11 +17,15 @@ body{
     background-color: white;
     border-radius: 10px 5px 10px 0;
     padding: 5px;
-    overflow: hidden;
-    min-width: min-content !important;
-    min-height: min-content !important;
+    /*min-width: min-content !important;*/
+    min-height: 60px;
     text-wrap: wrap;
     display: inline-block;
+    overflow: scroll;
+}
+
+.gulasz:has(.detroit:hover), .gulasz:has(.rome:hover){
+    overflow: hidden;
 }
 
 .gulasz:hover:not(:has(.detroit:hover)){
@@ -57,6 +61,8 @@ body{
 .detroit:hover{
     background-color: #ff0000;
     border-color: #ff0000;
+    width: 25px;
+    height: 25px;
 }
 
 .rome{
@@ -67,12 +73,27 @@ body{
     height: 15px;
     background-color: darkcyan;
     border-radius: 50% 0 0 0;
+    transition-duration: 0.3s;
 }
 
 .rome:hover{
     background-color: cyan;
+    width: 25px;
+    height: 25px;
 }
 
 .unselectable{
     user-select: none;
+}
+
+p{
+    width: 100%;
+    text-align: right;
+    color: snow;
+}
+
+.info{
+    position: absolute;
+    top: 0;
+    right: 0;
 }

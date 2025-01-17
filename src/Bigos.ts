@@ -8,6 +8,8 @@ export class Bigos {
     readonly defaulty = 50;
     readonly defaultheight = 200;
     readonly defaultwidth = 200;
+    przebieg: number;
+    na: number;
 
     constructor(name: string, context: HTMLElement) {
         this.name = name;
@@ -19,7 +21,8 @@ export class Bigos {
             this.newGulasz();
         })
         context.append(div)
-
+        this.przebieg = 0;
+        this.na = 0;
         this.test();
     }
 
@@ -29,7 +32,9 @@ export class Bigos {
         let y = this.defaulty;
         let height = this.defaultheight;
         let width = this.defaultheight;
-        this.notes.push(new Gulasz(id, x, y, width, height, "skibidi toilet goni mnie śpiewając te piosenke", this.context))
+        this.notes.push(new Gulasz(id, x, y, width, height, "[tekst epickiej notatki]", this.context, this))
+        document.querySelector(".przebieg")!.innerText = "przebieg: " + ++this.przebieg;
+        document.querySelector(".na")!.innerText = "na lodówce: " + ++this.na;
     }
 
     test(){

@@ -1,3 +1,5 @@
+import Bigos from "./Bigos"
+
 export class Gulasz {
     id: number;
     x: number;
@@ -13,8 +15,10 @@ export class Gulasz {
     prevPosY: number;
     draggable: boolean;
     resizable: boolean;
+    parent: Bigos;
 
-    constructor(id: number, x: number, y: number, width: number, height: number, content: string, context: HTMLElement) {
+
+    constructor(id: number, x: number, y: number, width: number, height: number, content: string, context: HTMLElement, parent: Bigos) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -29,6 +33,8 @@ export class Gulasz {
         this.prevPosY = 0;
         this.draggable = false;
         this.resizable = false;
+        this.parent = parent;
+
         this.create();
     }
 
@@ -40,7 +46,6 @@ export class Gulasz {
         this.div.classList.add("gulasz");
         this.div.style.top = this.x + "px";
         this.div.style.left = this.y + "px";
-
         this.ragDoll()
         this.starDestroyer();
         this.coloseum();
@@ -67,8 +72,7 @@ export class Gulasz {
                     this.div.style.left = (this.div.offsetLeft - this.currentPosX) + 'px';
                 } else if (this.resizable){
                     this.div.style.width = (this.div.offsetWidth - this.currentPosX) + 'px';
-                    let min = (Math.ceil(this.content.length * 16 / this.div.offsetWidth)) * 24;
-                    this.div.style.height = Math.max(this.div.offsetHeight - this.currentPosY, min) + 'px';
+                    this.div.style.height = this.div.offsetHeight - this.currentPosY + 'px';
                 }
             })
         })
@@ -81,6 +85,7 @@ export class Gulasz {
         div.classList.add("detroit");
         div.addEventListener("click", () => {
             this.context.removeChild(this.div);
+            document.querySelector(".na")!.innerText = "na lodówce: " + --this.parent.na;
         })
         this.div.appendChild(div);
     }

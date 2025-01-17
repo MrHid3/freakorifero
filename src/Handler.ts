@@ -11,6 +11,8 @@ export class Handler {
     }
 
     test(){
-        new Bigos("test", this.context);
+        document.addEventListener("DOMContentLoaded", () => {
+            new Bigos("test", this.context);
+        });
     }
 }
